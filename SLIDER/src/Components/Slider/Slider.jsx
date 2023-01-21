@@ -3,6 +3,7 @@ import "./Slider.css";
 import dataSlider from "./dataSlider";
 import BtnSlider from "./BtnSlider";
 
+// useState Hook intiated
 const Slider = () => {
   const [slideAnim, setSlideAnim] = useState({
     index: 1,
@@ -27,6 +28,7 @@ const Slider = () => {
     }
   };
 
+  //  Return, render section
   return (
     <div className="container-slider">
       {dataSlider.map((obj, index) => {
@@ -41,8 +43,25 @@ const Slider = () => {
           </div>
         );
       })}
+
+      {/* 
+      component BtnSlider called with states and props. 
+       */}
       <BtnSlider moveSlide={nextSlide} direction={"next"} />
       <BtnSlider moveSlide={prevSlide} direction={"prev"} />
+
+      {/* Map of data array to highlight the dot according to index position
+       */}
+
+      <div className="container-dots">
+        {Array.from({ length: dataSlider.length }).map((item, index) => {
+          return (
+            <div
+              className={slideAnim.index === index + 1 ? "dot active" : "dot"}
+            ></div>
+          );
+        })}
+      </div>
     </div>
   );
 };
