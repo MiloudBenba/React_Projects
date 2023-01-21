@@ -11,12 +11,20 @@ const Slider = () => {
 
   // Function for button NEXT
   const nextSlide = () => {
-    console.log("Clic next");
+    if (slideAnim.index !== dataSlider.length) {
+      setSlideAnim({ index: slideAnim.index + 1, inProgress: true });
+    } else if (slideAnim.index === dataSlider.length) {
+      setSlideAnim({ index: 1, inProgress: true });
+    }
   };
 
   // Function for button PREV
   const prevSlide = () => {
-    console.log("Clic prev");
+    if (slideAnim.index !== 1) {
+      setSlideAnim({ index: slideAnim.index - 1, inProgress: true });
+    } else if (slideAnim.index === 1) {
+      setSlideAnim({ index: dataSlider.length, inProgress: true });
+    }
   };
 
   return (
